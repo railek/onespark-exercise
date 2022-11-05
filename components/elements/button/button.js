@@ -5,9 +5,9 @@ import Loader from '../loader';
 
 import { StyledButton } from './button.styled';
 
-export default function Button({ type, color, children, event, loading }) {
+export default function Button({ type, color, children, event, loading, className }) {
   return (
-    <StyledButton onClick={event} type={type} color={color}>
+    <StyledButton onClick={event} type={type} color={color} className={className}>
       {loading ? 'Loading...' : children}
       {loading && <Loader />}
     </StyledButton>
@@ -19,6 +19,7 @@ Button.defaultProps = {
   color: 'primary',
   event: null,
   loading: false,
+  className: null,
 };
 
 Button.propTypes = {
@@ -27,4 +28,5 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   event: PropTypes.func,
   loading: PropTypes.bool,
+  className: PropTypes.string,
 };
