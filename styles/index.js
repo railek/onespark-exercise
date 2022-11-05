@@ -15,8 +15,8 @@ const Global = createGlobalStyle`
   ${Animation}
   ${Radius}
 
-  html {
-    scrollbar-gutter: stable;
+  html, body {
+    background-color: var(--neutral-50);
   }
 `;
 

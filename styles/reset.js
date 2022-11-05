@@ -212,6 +212,7 @@ const Reset = css`
 
   a {
     color: inherit;
+    line-height: 0;
     text-decoration: inherit;
   }
 
