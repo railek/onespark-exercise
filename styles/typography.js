@@ -31,6 +31,13 @@ const Typography = css`
     font-size: var(--text-16);
   }
 
+  p {
+    font-size: var(--text-14);
+    @media (min-width: 768px) {
+      font-size: var(--text-16);
+    }
+  }
+
   h1,
   h2,
   h3,
