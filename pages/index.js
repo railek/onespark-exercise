@@ -2,8 +2,13 @@ import React from 'react';
 
 import Container from '@/components/elements/container';
 import SectionTitle from '@/components/elements/section-title';
+import useQuestions from '@/hooks/use-questions';
 
 export default function Home() {
+  const { questions } = useQuestions();
+
+  if (!questions) return null;
+
   return (
     <Container>
       <SectionTitle
