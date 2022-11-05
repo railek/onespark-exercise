@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-const Spacing = css`
+const Radius = css`
   :root {
     --radius-24: 32px;
     --radius-32: 32px;
@@ -8,4 +8,4 @@ const Spacing = css`
   }
 `;
 
-export default Spacing;
+export default Radius;
