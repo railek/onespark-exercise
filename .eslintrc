@@ -23,6 +23,7 @@
   },
   "rules": {
     "camelcase": "off",
+    "no-nested-ternary": "off",
     "prettier/prettier": "error",
     "react/no-array-index-key": "off",
     "react/react-in-jsx-scope": "error",

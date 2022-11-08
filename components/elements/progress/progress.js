@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 import { StyledProgress, StyledStep } from './progress.styled';
 
-export default function Progress({ activeIndex, steps }) {
+export default function Progress({ step, steps }) {
   return (
     <StyledProgress>
       {[...Array(steps)].map((_, index) => (
         <StyledStep
           key={index}
-          className={`${activeIndex === index ? 'active' : 'inactive'} ${
-            activeIndex > index ? 'complete' : 'incomplete'
+          className={`${step === index ? 'active' : 'inactive'} ${
+            step > index ? 'complete' : 'incomplete'
           }`}
         >
           <span>{index + 1}</span>
@@ -25,6 +25,6 @@ Progress.defaultProps = {
 };
 
 Progress.propTypes = {
-  activeIndex: PropTypes.number.isRequired,
+  step: PropTypes.number.isRequired,
   steps: PropTypes.number,
 };
