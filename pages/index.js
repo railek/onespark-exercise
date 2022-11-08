@@ -6,6 +6,7 @@ import Card from '@/components/elements/card';
 import Container from '@/components/elements/container';
 import Progress from '@/components/elements/progress';
 import SectionTitle from '@/components/elements/section-title';
+import Success from '@/components/elements/success';
 import Form from '@/components/modules/form';
 import FormContext from '@/context/form-context';
 import useQuestions from '@/hooks/use-questions';
@@ -60,13 +61,13 @@ export default function Home() {
     <FormContext.Provider value={{ step, sections: questions.sections, onChange: onUpdate }}>
       <Container>
         <SectionTitle
-          title="Lorem ipsum"
-          description="Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
+          title="Get a life insurance quote"
+          description="Please fill the form below, Feel free to add as much detail as needed."
         />
         {submitted ? (
           <form>
             <Card>
-              <p>Your answers have been submitted!</p>
+              <Success />
             </Card>
             <ButtonGroup>
               <Button color="ghost" event={handleStart}>

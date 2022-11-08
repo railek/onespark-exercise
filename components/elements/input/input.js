@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { StyledInput } from './input.styled';
+import Label from '@/components/elements/label';
+
+import { StyledField, StyledInput } from './input.styled';
 
 export default function Input({
   id,
@@ -13,46 +15,44 @@ export default function Input({
   title,
   pattern,
   onChange,
-  inputmode,
   inline,
 }) {
   if (inline) {
-    const before = label.split(`{age}`);
-    const after = label.split(`{age}`)[1];
+    const before = label.substring(0, label.indexOf('{age}'));
+    const after = label.split('{age}')[1];
 
     return (
-      <div>
-        <div>{before}</div>
-        <input
+      <StyledField inline>
+        <Label>{before}</Label>
+        <StyledInput
           id={id}
           title={title}
           type={type}
           value={value}
           name={name}
           required={required}
-          inputMode={inputmode}
           pattern={pattern}
           onChange={onChange}
+          inline
         />
-        <div>{after}</div>
-      </div>
+        <Label>{after}</Label>
+      </StyledField>
     );
   }
   return (
-    <StyledInput>
-      {label && <label htmlFor={id}>{label}</label>}
-      <input
+    <StyledField>
+      {label && <Label htmlFor={id}>{label}</Label>}
+      <StyledInput
         id={id}
         title={title}
         type={type}
         value={value}
         name={name}
         required={required}
-        inputMode={inputmode}
         pattern={pattern}
         onChange={onChange}
       />
-    </StyledInput>
+    </StyledField>
   );
 }
 
@@ -64,7 +64,6 @@ Input.defaultProps = {
   pattern: null,
   title: null,
   onChange: null,
-  inputmode: null,
 };
 
 Input.propTypes = {
@@ -75,7 +74,6 @@ Input.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   title: PropTypes.string,
-  inputmode: PropTypes.string,
   type: PropTypes.oneOf(['text', 'tel', 'email']),
   required: PropTypes.bool,
   onChange: PropTypes.func,

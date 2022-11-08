@@ -20,6 +20,12 @@ const Global = createGlobalStyle`
   html, body {
     background-color: var(--neutral-50);
   }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+  }
 `;
 
 export default Global;

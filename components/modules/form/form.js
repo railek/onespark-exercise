@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 
 import Dropdown from '@/components/elements/dropdown';
 import Input from '@/components/elements/input';
+import Label from '@/components/elements/label';
 import Radio from '@/components/elements/radio';
 import FormContext from '@/context/form-context';
 
-import { StyledForm } from './form.styled';
+import { StyledField, StyledFieldset, StyledForm } from './form.styled';
 
 const Field = ({ item }) => {
-  const [currentValue, setCurrentValue] = useState(null);
+  const [currentValue, setCurrentValue] = useState('');
   const { onChange } = useContext(FormContext);
 
   const handleChange = (value) => {
@@ -28,19 +29,21 @@ const Field = ({ item }) => {
     case 'checkbox':
     case 'radio':
       return (
-        <fieldset id={item.id}>
-          <div>{item?.label}</div>
-          {item.options.map((option) => (
-            <Radio
-              onChange={(event) => handleChange(event.target.value, item.value)}
-              id={item.id}
-              required={item.required}
-              checked={currentValue === option.value}
-              label={option.text || option.label}
-              value={option.value}
-            />
-          ))}
-        </fieldset>
+        <StyledField>
+          <Label>{item?.label}</Label>
+          <StyledFieldset id={item.id}>
+            {item.options.map((option) => (
+              <Radio
+                onChange={(event) => handleChange(event.target.value, item.value)}
+                id={item.id}
+                required={item.required}
+                checked={currentValue === option.value}
+                label={option.text || option.label}
+                value={option.value}
+              />
+            ))}
+          </StyledFieldset>
+        </StyledField>
       );
     case 'inline_select':
       return (

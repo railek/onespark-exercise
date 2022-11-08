@@ -5,6 +5,8 @@ import styled from 'styled-components';
 export const StyledProgress = styled.ul`
   display: flex;
   flex-direction: row;
+  padding-bottom: var(--space-32);
+  border-bottom: 1px solid var(--neutral-100);
 `;
 
 export const StyledStep = styled.li`
@@ -34,7 +36,7 @@ export const StyledStep = styled.li`
   }
 
   &.incomplete span {
-    background-color: var(--neutral-200);
+    background-color: var(--neutral-100);
     color: var(--neutral-400);
   }
 
@@ -57,7 +59,7 @@ export const StyledStep = styled.li`
 
   &:before {
     width: 100%;
-    background-color: var(--neutral-200);
+    background-color: var(--neutral-100);
   }
 
   &.inactive.complete:before {

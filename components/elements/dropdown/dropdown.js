@@ -2,6 +2,10 @@ import React from 'react';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
 
+import Label from '@/components/elements/label';
+
+import { StyledInline, StyledSelect } from './dropdown.styled';
+
 export default function Dropdown({
   options,
   value,
@@ -13,12 +17,12 @@ export default function Dropdown({
   inline,
 }) {
   if (inline) {
-    const before = label.split('{label}');
+    const before = label.substring(0, label.indexOf('{label}'));
     const after = label.split('{label}')[1];
 
     return (
-      <div>
-        <div>{before}</div>
+      <StyledInline>
+        <Label>{before}</Label>
         <Select
           required={required}
           options={options}
@@ -26,9 +30,12 @@ export default function Dropdown({
           value={value}
           onChange={onChange}
           isSearchable={isSearchable}
+          styles={StyledSelect}
+          inline={inline}
+          components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null }}
         />
-        <div>{after}</div>
-      </div>
+        <Label>{after}</Label>
+      </StyledInline>
     );
   }
 
@@ -40,6 +47,7 @@ export default function Dropdown({
       value={value}
       onChange={onChange}
       isSearchable={isSearchable}
+      styles={StyledSelect}
     />
   );
 }

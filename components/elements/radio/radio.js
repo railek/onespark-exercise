@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { StyledRadio } from './radio.styled';
+
 export default function Radio({ onChange, id, checked, label, value, required }) {
   return (
-    <div>
+    <StyledRadio checked={checked}>
+      <label htmlFor={id}>{label}</label>
       <input
         id={id}
         onChange={onChange}
@@ -13,8 +16,7 @@ export default function Radio({ onChange, id, checked, label, value, required })
         checked={checked}
         required={required}
       />
-      <label htmlFor={id}>{label}</label>
-    </div>
+    </StyledRadio>
   );
 }
 
