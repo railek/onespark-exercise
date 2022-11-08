@@ -6,6 +6,7 @@ import Card from '@/components/elements/card';
 import Container from '@/components/elements/container';
 import Progress from '@/components/elements/progress';
 import SectionTitle from '@/components/elements/section-title';
+import Spinner from '@/components/elements/spinner';
 import Success from '@/components/elements/success';
 import Form from '@/components/modules/form';
 import FormContext from '@/context/form-context';
@@ -14,14 +15,12 @@ import Delay from '@/utilities/delay';
 import FetchJson from '@/utilities/fetch-json';
 
 export default function Home() {
-  const { questions } = useQuestions();
+  const { questions, loading } = useQuestions();
   const [isLoading, setIsLoading] = useState(false);
   const [step, setStep] = useState(0);
   const [data, setData] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const stepCount = questions?.sections?.length || 0;
-
-  if (!questions) return null;
 
   const handleSubmit = async () => {
     setIsLoading(true);
@@ -56,6 +55,10 @@ export default function Home() {
     setStep(0);
     setSubmitted(false);
   };
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <FormContext.Provider value={{ step, sections: questions.sections, onChange: onUpdate }}>
