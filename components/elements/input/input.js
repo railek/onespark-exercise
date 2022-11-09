@@ -23,7 +23,7 @@ export default function Input({
 
     return (
       <StyledField inline>
-        <Label>{before}</Label>
+        <Label htmlFor={id}>{before}</Label>
         <StyledInput
           id={id}
           title={title}
@@ -70,11 +70,11 @@ Input.propTypes = {
   id: PropTypes.string.isRequired,
   value: PropTypes.string,
   pattern: PropTypes.string,
-  inline: PropTypes.string,
+  inline: PropTypes.bool,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   title: PropTypes.string,
-  type: PropTypes.oneOf(['text', 'tel', 'email']),
+  type: PropTypes.oneOf(['text', 'tel', 'email', 'number']),
   required: PropTypes.bool,
   onChange: PropTypes.func,
 };

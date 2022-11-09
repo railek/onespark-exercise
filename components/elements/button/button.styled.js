@@ -8,6 +8,7 @@ export const StyledButton = styled.button`
   border-radius: var(--radius-999);
   color: ${({ color }) => (color === 'primary' ? 'var(--white)' : 'var(--primary-500)')};
   display: flex;
+  align-items: center;
   gap: var(--space-12);
   justify-content: space-between;
   font-size: var(--text-14);

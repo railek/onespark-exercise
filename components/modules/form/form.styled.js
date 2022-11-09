@@ -6,11 +6,11 @@ export const StyledForm = styled.div`
   display: flex;
   gap: var(--space-32);
   flex-direction: column;
-  margin-top: var(--space-32);
+  padding: var(--space-32) var(--space-24);
 
   @media (min-width: 768px) {
     gap: var(--space-48);
-    margin-top: var(--space-64);
+    padding: var(--space-48);
   }
 `;
 

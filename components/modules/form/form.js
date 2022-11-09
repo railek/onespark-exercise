@@ -30,10 +30,11 @@ const Field = ({ item }) => {
     case 'radio':
       return (
         <StyledField>
-          <Label>{item?.label}</Label>
+          {item.label && <Label>{item.label}</Label>}
           <StyledFieldset id={item.id}>
-            {item.options.map((option) => (
+            {item.options.map((option, index) => (
               <Radio
+                key={index}
                 onChange={(event) => handleChange(event.target.value, item.value)}
                 id={item.id}
                 required={item.required}

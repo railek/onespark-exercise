@@ -1,4 +1,10 @@
 import React, { useState } from 'react';
+import {
+  HiArrowNarrowLeft,
+  HiArrowNarrowRight,
+  HiOutlineReply,
+  HiOutlineStar,
+} from 'react-icons/hi';
 
 import Button from '@/components/elements/button';
 import ButtonGroup from '@/components/elements/button-group';
@@ -75,6 +81,7 @@ export default function Home() {
             <ButtonGroup>
               <Button color="ghost" event={handleStart}>
                 Start Over
+                <HiOutlineReply />
               </Button>
             </ButtonGroup>
           </form>
@@ -87,16 +94,19 @@ export default function Home() {
             <ButtonGroup>
               {step > 0 && (
                 <Button className="previous" color="ghost" event={() => setStep(step - 1)}>
+                  <HiArrowNarrowLeft />
                   Previous
                 </Button>
               )}
               {step < stepCount - 1 ? (
                 <Button className="next" type="submit">
                   Next
+                  <HiArrowNarrowRight />
                 </Button>
               ) : (
                 <Button loading={isLoading} event={handleSubmit}>
                   Submit
+                  <HiOutlineStar />
                 </Button>
               )}
             </ButtonGroup>

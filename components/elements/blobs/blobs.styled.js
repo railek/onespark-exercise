@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 
-export const StyledBlobs = styled.ul`
+export const StyledBlobs = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;

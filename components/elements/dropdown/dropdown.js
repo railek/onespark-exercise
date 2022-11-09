@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
 
@@ -16,6 +16,27 @@ export default function Dropdown({
   required,
   inline,
 }) {
+  const [hiddenValue, setHiddenValue] = useState(value);
+  const selectRef = useRef(null);
+
+  const onFocus = () => {
+    if (selectRef.current) {
+      selectRef.current.focus();
+    }
+  };
+
+  const handleChange = (v) => {
+    onChange(v);
+    setHiddenValue(v);
+  };
+
+  const getValue = () => {
+    if (value !== undefined && value !== null) {
+      return value;
+    }
+    return hiddenValue || '';
+  };
+
   if (inline) {
     const before = label.substring(0, label.indexOf('{label}'));
     const after = label.split('{label}')[1];
@@ -24,31 +45,55 @@ export default function Dropdown({
       <StyledInline>
         <Label>{before}</Label>
         <Select
-          required={required}
           options={options}
           placeholder={options[0].label}
           value={value}
-          onChange={onChange}
+          onChange={handleChange}
           isSearchable={isSearchable}
           styles={StyledSelect}
           inline={inline}
+          ref={selectRef}
           components={{ DropdownIndicator: () => null, IndicatorSeparator: () => null }}
         />
+        {required && (
+          <input
+            tabIndex={-1}
+            autoComplete="off"
+            style={{ opacity: 0, width: '100%', height: 0, position: 'absolute' }}
+            value={getValue()}
+            onChange={() => {}}
+            onFocus={onFocus}
+            required
+          />
+        )}
         <Label>{after}</Label>
       </StyledInline>
     );
   }
 
   return (
-    <Select
-      required={required}
-      options={options}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      isSearchable={isSearchable}
-      styles={StyledSelect}
-    />
+    <div>
+      <Select
+        options={options}
+        placeholder={placeholder}
+        value={value}
+        onChange={handleChange}
+        isSearchable={isSearchable}
+        ref={selectRef}
+        styles={StyledSelect}
+      />
+      {required && (
+        <input
+          tabIndex={-1}
+          autoComplete="off"
+          style={{ opacity: 0, width: '100%', height: 0, position: 'absolute' }}
+          value={getValue()}
+          onChange={() => {}}
+          onFocus={onFocus}
+          required
+        />
+      )}
+    </div>
   );
 }
 
@@ -68,5 +113,9 @@ Dropdown.propTypes = {
   required: PropTypes.bool,
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  options: PropTypes.arrayOf().isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+    }),
+  ).isRequired,
 };

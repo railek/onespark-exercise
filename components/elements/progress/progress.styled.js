@@ -5,8 +5,17 @@ import styled from 'styled-components';
 export const StyledProgress = styled.ul`
   display: flex;
   flex-direction: row;
+  padding-top: var(--space-32);
   padding-bottom: var(--space-32);
   border-bottom: 1px solid var(--neutral-100);
+  background-color: var(--neutral-50);
+  border-top-left-radius: var(--radius-24);
+  border-top-right-radius: var(--radius-24);
+
+  @media (min-width: 768px) {
+    border-top-left-radius: var(--radius-32);
+    border-top-right-radius: var(--radius-32);
+  }
 `;
 
 export const StyledStep = styled.li`
